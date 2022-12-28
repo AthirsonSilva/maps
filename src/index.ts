@@ -5,9 +5,9 @@ import { User } from './entities/User'
 const user = new User()
 const company = new Company()
 const map = new CustomMap('map', {
-	lat: user.userLocation.lat,
-	lng: user.userLocation.lng,
+	lat: user.location.lat,
+	lng: user.location.lng,
 })
 
-map.addUserMarker(user)
-map.addCompanyMarker(company)
+map.addMarker(user)
+map.addMarker(company)
