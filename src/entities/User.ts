@@ -1,15 +1,15 @@
 import { faker } from '@faker-js/faker'
 
-export default class User {
-	public name: string
-	public location: {
+export class User {
+	public userName: string
+	public userLocation: {
 		lat: number
 		lng: number
 	}
 
 	constructor() {
-		this.name = faker.name.firstName()
-		this.location = {
+		this.userName = String(faker.name.firstName())
+		this.userLocation = {
 			lat: parseFloat(faker.address.latitude()),
 			lng: parseFloat(faker.address.longitude()),
 		}
