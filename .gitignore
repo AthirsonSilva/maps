@@ -1,6 +1,7 @@
 # compiled output
 /dist
 /node_modules
+dist/*
 
 # Logs
 logs
@@ -39,3 +40,5 @@ lerna-debug.log*
 .parcel-cache/.*
 .env
 dist/*
+/.parcel-cache
+/.parcel-cache/*
