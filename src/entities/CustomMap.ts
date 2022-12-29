@@ -1,5 +1,4 @@
-import { Company } from './Company'
-import { User } from './User'
+import { Mappable } from './Mappable'
 
 export class CustomMap {
 	private googleMap: google.maps.Map
@@ -17,42 +16,23 @@ export class CustomMap {
 		)
 	}
 
-	addUserMarker(user: User): void {
+	addMarker(entity: Mappable): void {
 		const marker = new google.maps.Marker({
 			map: this.googleMap,
 			position: {
-				lat: user.userLocation.lat,
-				lng: user.userLocation.lng,
+				lat: entity.location.lat,
+				lng: entity.location.lng,
 			},
 		})
 
-		marker.setLabel(user.userName)
-
-		marker.addListener('click', () => {
-			const infoWindow = new google.maps.InfoWindow({
-				content: user.userName,
-			})
-
-			infoWindow.open(this.googleMap, marker)
-		})
-	}
-
-	addCompanyMarker(company: Company): void {
-		const marker = new google.maps.Marker({
-			map: this.googleMap,
-			position: {
-				lat: company.companyLocation.lat,
-				lng: company.companyLocation.lng,
-			},
+		const infoWindow = new google.maps.InfoWindow({
+			content: entity.markerContent() as string,
 		})
 
-		marker.setLabel(company.companyName)
+		marker.setLabel(entity.name)
 
 		marker.addListener('click', () => {
-			const infoWindow = new google.maps.InfoWindow({
-				content: company.companyName + ' - ' + company.catchPhrase,
-			})
-
+			infoWindow.close()
 			infoWindow.open(this.googleMap, marker)
 		})
 	}
